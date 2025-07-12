@@ -12,7 +12,7 @@ StackIt is a minimalistic Q&A web platform focused on collaborative learning and
 - **Rohit Dhruv Sanjaybhai**  
   📧 rohitdhruv205@gmail.com  
 - **Het Kirankumar Parmar**  
-  📧 het2122005@gmai.com  
+  📧 het2122005@gmail.com  
 
 ### Backend
 - **Rasania Mihirkumar Nileshbhai**  
