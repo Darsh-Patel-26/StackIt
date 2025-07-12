@@ -21,6 +21,9 @@ const replySchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
+},{
+  timestamps:true
 });
 
-module.exports = mongoose.model('Reply', replySchema);
+const Reply = mongoose.model('Reply', replySchema);
+export default Reply;

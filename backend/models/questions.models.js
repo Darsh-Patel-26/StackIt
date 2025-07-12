@@ -41,21 +41,16 @@ const questionSchema = new mongoose.Schema({
   downvotes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }],
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now
-  }
+  }]
+},{
+  timestamps:true
 });
 
-// Update votes count
 questionSchema.methods.updateVotes = function() {
   this.votes = this.upvotes.length - this.downvotes.length;
   return this.save();
 };
 
-module.exports = mongoose.model('Question', questionSchema);
+const Question = mongoose.model('Question', questionSchema);
+
+export default Question;
