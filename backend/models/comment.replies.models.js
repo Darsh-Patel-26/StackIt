@@ -1,0 +1,26 @@
+import mongoose from 'mongoose';
+
+const replySchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  comment: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment',
+    required: true
+  },
+  reply: {
+    type: String,
+    required: true,
+    minlength: 1,
+    maxlength: 300
+  },
+  timestamp: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+module.exports = mongoose.model('Reply', replySchema);
