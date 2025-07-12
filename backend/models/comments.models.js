@@ -19,11 +19,11 @@ const commentSchema = new mongoose.Schema({
   },
   upvotes: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Userr'
   }],
   downvotes: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Userr'
   }],
   votes: {
     type: Number,

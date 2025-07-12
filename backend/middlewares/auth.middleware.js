@@ -1,20 +1,13 @@
-import jwt from "jsonwebtoken";
-import { sendMessage } from "../utils/sendMessage.js";
-
 export const authMiddleware = (req, res, next) => {
-  let token = req.cookies?.token;
-
-  // Check if token is sent in header as Bearer
-  if (!token && req.headers.authorization?.startsWith("Bearer ")) {
-    token = req.headers.authorization.split(" ")[1];
-  }
+  const authHeader = req.headers.authorization;
+  const token = authHeader?.startsWith("Bearer ") ? authHeader.split(" ")[1] : null;
 
   if (!token) {
     return sendMessage(res, 401, "Authentication token missing");
   }
 
   try {
-    const secret = "sec3t"; // Or use process.env.JWT_SECRET
+    const secret = process.env.JWT_SECRET || "sec3t";
     const payload = jwt.verify(token, secret);
     req.user = payload;
     next();
