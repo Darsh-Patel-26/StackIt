@@ -17,10 +17,6 @@ const commentSchema = new mongoose.Schema({
     minlength: 1,
     maxlength: 500
   },
-  timestamp: {
-    type: Date,
-    default: Date.now
-  },
   upvotes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -37,12 +33,14 @@ const commentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Reply'
   }]
+},{
+  timestamps:true
 });
 
-// Update votes count
 commentSchema.methods.updateVotes = function() {
   this.votes = this.upvotes.length - this.downvotes.length;
   return this.save();
 };
 
-module.exports = mongoose.model('Comment', commentSchema);
+const Comment = mongoose.model('Comment', commentSchema);
+export default Comment;

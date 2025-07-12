@@ -1,21 +1,25 @@
-import dotenv from 'dotenv';
-dotenv.config();
 import express from "express";
-import { connectDB } from "./db/connect.db";
-import { errorHandler } from "./utils/errorHandler";
+import { connectDB } from "./db/connect.db.js";
+import { errorHandler } from "./utils/errorHandler.js";
 import cors from "cors";
+import cookieParser from 'cookie-parser';
+import userRouter from './routes/user.routes.js';
+import questionRouter from './routes/questions.routes.js';
+import commentRouter from './routes/comments.routes.js';
+import replyRouter from './routes/comments.reqplies.routes.js';
+import answerRouter from './routes/answer.routes.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
-
-app.all("*", (req, res, next) => {
-  const err = new Error(`Can't find ${req.originalUrl}`);
-  err.statusCode = 404;
-  next(err);
-});
+app.use('/api/users',userRouter);
+app.use("/api/questions", questionRouter);
+app.use("/api/comments", commentRouter);
+app.use("/api/answers", answerRouter);
+app.use("/api/replies", replyRouter);
 
 app.use(errorHandler);
 async function startServer(){

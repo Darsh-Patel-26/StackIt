@@ -30,15 +30,9 @@ const answerSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now
   }
+},{
+  timestamps:true
 });
 
 // Update votes count
@@ -47,4 +41,6 @@ answerSchema.methods.updateVotes = function() {
   return this.save();
 };
 
-module.exports = mongoose.model('Answer', answerSchema);
+const Answer = mongoose.model('Answer', answerSchema);
+
+export default Answer;
