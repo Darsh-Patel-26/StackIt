@@ -50,5 +50,5 @@ userSchema.methods.createToken = async function(){
   const secret = "sec3t"
   return jwt.sign(data,secret,{expiresIn:`1d`});
 }
-const User =  mongoose.model('User', userSchema);
+const User =  mongoose.model('Userr', userSchema);
 export default User;

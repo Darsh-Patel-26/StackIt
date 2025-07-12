@@ -36,11 +36,11 @@ const questionSchema = new mongoose.Schema({
   },
   upvotes: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Userr'
   }],
   downvotes: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Userr'
   }]
 },{
   timestamps:true
